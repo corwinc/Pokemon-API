@@ -1,0 +1,28 @@
+{
+  "name": "poke-mongodb",
+  "version": "1.0.0",
+  "description": "A Pokémon API",
+  "main": "server/index.js",
+  "scripts": {
+    "postinstall": "curl -s https://raw.githubusercontent.com/hackreactor-labs/pomander/master/bin/install | bash",
+    "start": "node server",
+    "test": "mocha test"
+  },
+  "author": "You!",
+  "private": true,
+  "license": "UNLICENSED",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.5.7",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-things": "^0.2.0",
+    "eslint-config-hackreactor": "git://github.com/hackreactor-labs/eslint-config-hackreactor",
+    "eslint": "^3.3.1",
+    "mocha": "^3.0.2",
+    "supertest": "^2.0.0"
+  }
+}
