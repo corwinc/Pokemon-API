@@ -4,7 +4,7 @@ var morgan = require('morgan');
 var db = require('./db');
 
 // Create the Express application:
-var app;
+var app = express();
 
 // Attach middleware:
 
