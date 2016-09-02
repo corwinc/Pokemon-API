@@ -4,7 +4,7 @@ angular.module('pokemon', [
 ])
 .config(function($routeProvider) {
   $routeProvider
-    .when('/pokemon', {
+    .when('/', {
       templateUrl: 'app/pokemon/pokemon.html',
       controller: 'PokemonController'
     })
@@ -14,3 +14,6 @@ angular.module('pokemon', [
     })
     .otherwise({redirectTo: '/pokemon'});
 });
+
+
+/// note: add functionality is currently included on the main pokemon.html template

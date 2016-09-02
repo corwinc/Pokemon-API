@@ -4,6 +4,7 @@ var morgan = require('morgan');
 var db = require('./db');
 var pokemonRouter = require('./resources/pokemon/pokemonRouter.js');
 var pokemonController = require('./resources/pokemon/pokemonController.js');
+var path = require('path');
 
 // Create the Express application:
 var app = express();
@@ -14,20 +15,24 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 // Import the pokemonRouter and assign it to the correct route:
-// TODO: CHECK path name
+// TODO: CHECK path name -- couldn't get to work!
 // app.use('/', pokemonRouter);
 
 
 ////  ROUTES //////
+/// need to update to contain put, delete & test
+/// currently w/  get / post it works!!
 app.get('/api/pokemon', pokemonController.retrieve);
 app.post('/api/pokemon', pokemonController.createOne);
 app.post('/api/pokemon-retrieve', pokemonController.retrieveOne);
 app.post('/api/pokemon-update', pokemonController.updateOne);
 app.get('/api/delete', pokemonController.delete);
 app.post('/api/delete', pokemonController.deleteOne);
+// app.post('/api/pokemon/type', pokemonController.displayPokemonByType);
 
-// STATIC FILES ///
-
+// STATIC FILES ///// NEED TO FIX
+// app.use(express.static(path.join(__dirname, '/client')));
+app.use(express.static('../client'));
 
 // app.get('/', function (req, res) {
 //   res.json({ message: 'Welcome to the Poke-MongoDB RESTful API!' });

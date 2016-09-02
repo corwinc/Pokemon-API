@@ -39,5 +39,22 @@ angular.module('pokemon.pokemon', [])
     });
   };
 
+  $scope.displayPokemonByType = function() {
+    $http({
+      method: 'POST',
+      url: '/api/pokemon/type'
+    })
+    .then(function(res) {
+      console.log('displayPokemon response: ', res);
+      console.log('displayPokemon response data: ', res.data);
+      // for each item in result, push to $scope.pokemon
+      res.forEach(function(poke) {
+        console.log('for each poke: ', poke);
+        $scope.pokemon.concat(poke);
+      });
+      res.send();
+    });
+  };
+
 
 });

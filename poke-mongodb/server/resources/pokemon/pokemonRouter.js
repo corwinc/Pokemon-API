@@ -8,6 +8,7 @@ var server = require('../../server.js');
 
 
 // Create route handlers for each of the six methods in pokemonController
+// CAN'T GET TO WORK --  ROUTING IS ON SERVER.JS
 pokemonRouter.route('/')
   .get(pokemonController.retrieve)
   .post(pokemonController.createOne);

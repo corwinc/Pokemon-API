@@ -6,8 +6,15 @@
   </div>
 
   <h3>Filter Pokemon by Type!</h3>
-  <!-- repeat by how many types there are, on change: clear dom and get only those poke that match the selected type -->
-  <select ng-repeat='' ng-change=''></select>
+  <!-- as user types, filter pokemon displayed. Eventually, combine filter function with the display of all Pokemon above -->
+  <!-- another way to do it is by select dropdown, w/ type options set w/ ng-repeat -->
+<!--   <select ng-change=''></select> -->
+<input ng-model='search'>
+  <div ng-repeat='poke in pokemon | filter:search'>
+    <div>{{ poke.name }}</div>
+    <div>{{ poke.types }}</div>
+    <div>{{ poke.imgUrl }}</div>
+  </div>
 
 <!-- Add a pokemon by filling in the input fields. each one should be added to the newPoke object on the $scope. on button submit, call controller method createPokemon -->
   <h3>Add a Pokemon!</h3>
