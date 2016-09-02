@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var pokeData = require('../../../data/pokemon.json');
 // Complete the pokemonSchema below.
 var pokemonSchema = new mongoose.Schema({
   number: {type: Number, unique: true},
@@ -8,7 +9,6 @@ var pokemonSchema = new mongoose.Schema({
 });
  
 // Register the pokemonSchema with Mongoose as the 'Pokemon' collection.
-var Pokemon = mongoose.Model('Pokemon', pokemonSchema);
- 
+var Pokemon = mongoose.model('Pokemon', pokemonSchema);
 
 module.exports = Pokemon;
