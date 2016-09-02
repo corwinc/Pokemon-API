@@ -19,7 +19,6 @@ app.use(rateLimiter);
 // Import the pokemonRouter and assign it to the correct route:
 // TODO: CHECK path name -- couldn't get to work!
 // app.use('/', pokemonRouter);
-app.use(express.static('../client'));
 
 ////  ROUTES //////
 /// need to update to contain put, delete & test
@@ -34,7 +33,7 @@ app.post('/api/delete', pokemonController.deleteOne);
 
 // STATIC FILES ///// NEED TO FIX
 // app.use(express.static(path.join(__dirname, '/client')));
-
+app.use(express.static('/../client'));
 
 // app.get('/', function (req, res) {
 //   res.json({ message: 'Welcome to the Poke-MongoDB RESTful API!' });
