@@ -1,0 +1,29 @@
+<div ng-controller='PokemonController'>
+  <div ng-repeat='poke in pokemon'>
+    <div>{{ poke.name }}</div>
+    <div>{{ poke.types }}</div>
+    <div>{{ poke.imgUrl }}</div>
+  </div>
+
+  <h3>Filter Pokemon by Type!</h3>
+  <!-- repeat by how many types there are, on change: clear dom and get only those poke that match the selected type -->
+  <select ng-repeat='' ng-change=''></select>
+
+<!-- Add a pokemon by filling in the input fields. each one should be added to the newPoke object on the $scope. on button submit, call controller method createPokemon -->
+  <h3>Add a Pokemon!</h3>
+  <h6>Name</h6>
+  <input ng-model='newPoke.name'>
+  <h6>Type</h6>
+  <input ng-model='newPoke.type'>
+  <h6>imgUrl</h6>
+  <input ng-model='newPoke.imgUrl'>
+  <h6>Number</h6>
+  <input ng-model='newPoke.number'>
+  <div>{{newPoke.name}}</div>
+  <button ng-click='createPokemon(newPoke)'>Add</button>
+</div>
+
+
+
+
+<!-- ng-repeat='name in poke.types' -->

@@ -19,12 +19,12 @@ app.use(morgan('dev'));
 
 
 ////  ROUTES //////
-app.get('/', pokemonController.retrieve);
-app.post('/', pokemonController.createOne);
-app.post('/pokemon-retrieve', pokemonController.retrieveOne);
-app.post('/pokemon-update', pokemonController.updateOne);
-app.get('/delete', pokemonController.delete);
-app.post('/delete', pokemonController.deleteOne);
+app.get('/api/pokemon', pokemonController.retrieve);
+app.post('/api/pokemon', pokemonController.createOne);
+app.post('/api/pokemon-retrieve', pokemonController.retrieveOne);
+app.post('/api/pokemon-update', pokemonController.updateOne);
+app.get('/api/delete', pokemonController.delete);
+app.post('/api/delete', pokemonController.deleteOne);
 
 // STATIC FILES ///
 

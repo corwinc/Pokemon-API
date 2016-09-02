@@ -78,7 +78,6 @@ exports.updateOne = function (req, res) {
     });
 };
 
-
 exports.delete = function (req, res) {
   // DELETE request handling: remove ALL from db
   console.log('delete req.body: ', req.body);
@@ -101,3 +100,5 @@ exports.deleteOne = function (req, res) {
     res.json(doc); // send result instead?
   });
 };
+
+
