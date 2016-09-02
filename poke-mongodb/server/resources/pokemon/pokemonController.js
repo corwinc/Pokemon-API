@@ -15,11 +15,12 @@ exports.createOne = function (req, res) {
     // if not there: create
     if (!found) {
       var newPoke = new Pokemon(poke);
-      newPoke.save(function(err) {
+      newPoke.save(function(err, poke) {
         if (err) {
           return handleError(err);
         }
         console.log('new pokemon created and saved!: ', newPoke);
+        res.json(poke);
       });
     // else return found status & pokemon json
     } else {
@@ -28,9 +29,8 @@ exports.createOne = function (req, res) {
   });
 };
 
-
-// TODO: does find() need a callback or is exec ok?
 exports.retrieve = function (req, res) {
+  console.log('inside retrieve function');
   // find ALL pokemon
   Pokemon.find()
     .exec(function(err, found) {
@@ -43,9 +43,13 @@ exports.retrieve = function (req, res) {
     });
 };
 
+
+///// NEED TO FIX ///////
 exports.retrieveOne = function (req, res) {
   // findOne by number
   console.log('retrieveOne req.body: ', req.body);
+  // try FindOne
+  // try w/ callback
   Pokemon.find({number: req.body.number})
     .exec(function(err, found) {
       console.log('retrieveOne found: ', found);
@@ -57,10 +61,6 @@ exports.retrieveOne = function (req, res) {
     });
 };
 
-
-// TODO: CHECK that findOneAndUpdate returns the pokemon
-// TODO: check callback v exec functionality
-// TODO: check that pokemon sent back is updated v not old v http://mongoosejs.com/docs/api.html#model
 exports.updateOne = function (req, res) {
   //PUT request handling: what is being updated? assume everything
   console.log('updateOne req.body: ', req.body);
@@ -68,22 +68,17 @@ exports.updateOne = function (req, res) {
     name: req.body.name,
     types: req.body.types,
     imgUrl: req.body.imgUrl
-  }, function(err, pokemon) {
-    console.log('updateOne pokemon data: ', pokemon);
-    if (err) {
-      return handleError(err);
-    } 
-    res.json(pokemon);
-  });
-    // .exec(function(err, pokemon) {
-    //   console.log('updateOne pokemon data: ', pokemon);
-    //   if (err) return handleError(err);
-    //   res.json(pokemon)
-    // })
+  })
+    .exec(function(err, pokemon) {
+      console.log('updateOne pokemon data: ', pokemon);
+      if (err) {
+        return handleError(err);
+      }
+      res.json(pokemon);
+    });
 };
 
 
-/// TODO: does remove return data?
 exports.delete = function (req, res) {
   // DELETE request handling: remove ALL from db
   console.log('delete req.body: ', req.body);
@@ -96,8 +91,6 @@ exports.delete = function (req, res) {
     });
 };
 
-
-/// TOOD: CHECK if sending back doc v result
 exports.deleteOne = function (req, res) {
   // DELETE only one by NUMBER
   console.log('deleteOne req.body: ', req.body);
