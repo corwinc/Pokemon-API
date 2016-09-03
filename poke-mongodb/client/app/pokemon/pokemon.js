@@ -3,23 +3,24 @@ angular.module('pokemon.pokemon', [])
   // logic for pokemon view
   $scope = {};
   $scope.pokemon = [];
+  console.log('scope pokemon:', $scope.pokemon);
 
   // rateLimiter functionality: plan to add headers: {} to each request to /api/pokemon, with User info. Not including now b/c haven't been able to test the first versions of these functions b/c static files not loading.
 
   $scope.displayPokemon = function() {
+    console.log('displayPokemon called');
     $http({
       method: 'GET',
       url: '/api/pokemon'
     })
     .then(function(res) {
-      console.log('displayPokemon response: ', res);
       console.log('displayPokemon response data: ', res.data);
       // for each item in result, push to $scope.pokemon
-      res.forEach(function(poke) {
-        console.log('for each poke: ', poke);
-        $scope.pokemon.concat(poke);
+      res.data.forEach(function(poke) {
+        // console.log('for each poke: ', poke);
+        $scope.pokemon.push(poke);
       });
-      res.send();
+       
     });
   };
 
@@ -58,5 +59,6 @@ angular.module('pokemon.pokemon', [])
     });
   };
 
+  $scope.displayPokemon();
 
 });

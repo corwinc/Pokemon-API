@@ -33,7 +33,7 @@ app.post('/api/delete', pokemonController.deleteOne);
 
 // STATIC FILES ///// NEED TO FIX
 // app.use(express.static(path.join(__dirname, '/client')));
-app.use(express.static('/../client'));
+app.use(express.static(path.join(__dirname, '../client')));
 
 // app.get('/', function (req, res) {
 //   res.json({ message: 'Welcome to the Poke-MongoDB RESTful API!' });
