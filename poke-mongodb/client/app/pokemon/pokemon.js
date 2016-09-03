@@ -16,9 +16,12 @@ angular.module('pokemon.pokemon', [])
     .then(function(res) {
       console.log('displayPokemon response data: ', res.data);
       // for each item in result, push to $scope.pokemon
+
       res.data.forEach(function(poke) {
         // console.log('for each poke: ', poke);
-        $scope.pokemon.push(poke);
+        if ($scope.pokemon.indexOf(poke) === -1) {
+          $scope.pokemon.push(poke);
+        }
       });
        
     });
