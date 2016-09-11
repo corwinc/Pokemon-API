@@ -1,13 +1,12 @@
 angular.module('pokemon.pokemon', [])
 .controller('PokemonController', function($scope, $http) {
   // logic for pokemon view
-  $scope = {};
   $scope.pokemon = [];
   console.log('scope pokemon:', $scope.pokemon);
 
   // rateLimiter functionality: plan to add headers: {} to each request to /api/pokemon, with User info. Not including now b/c haven't been able to test the first versions of these functions b/c static files not loading.
 
-  $scope.displayPokemon = function() {
+  $scope.getPokemon = function() {
     console.log('displayPokemon called');
     $http({
       method: 'GET',
@@ -28,6 +27,7 @@ angular.module('pokemon.pokemon', [])
   };
 
   $scope.createPokemon = function() {
+    console.log('createPokemon called');
     $http({
       method: 'POST',
       url: '/api/pokemon',
@@ -40,28 +40,34 @@ angular.module('pokemon.pokemon', [])
     })
     .then(function(res) {
       console.log('createPokemon res:', res);
-      $scope.displayPokemon();
+      $scope.getPokemon();
       res.send('pokemon created!');
     });
   };
 
-  $scope.displayPokemonByType = function() {
+
+// update to GET w/ query 
+  $scope.getPokemonByType = function(type) {
+    console.log('getPokemonByType called, type:', type);
     $http({
       method: 'POST',
-      url: '/api/pokemon/type'
+      url: '/api/pokemon/type',
+      data: type
     })
     .then(function(res) {
-      console.log('displayPokemon response: ', res);
-      console.log('displayPokemon response data: ', res.data);
+      console.log('getPokemonByType response: ', res);
+      console.log('getPokemonByType response data: ', res.data);
+      // clear pokemon
+      $scope.pokemon = [];
       // for each item in result, push to $scope.pokemon
       res.forEach(function(poke) {
         console.log('for each poke: ', poke);
-        $scope.pokemon.concat(poke);
+        $scope.pokemon.push(poke);
       });
       res.send();
     });
   };
 
-  $scope.displayPokemon();
+  $scope.getPokemon();
 
 });
