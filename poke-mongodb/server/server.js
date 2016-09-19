@@ -16,24 +16,10 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(rateLimiter);
 
-// Import the pokemonRouter and assign it to the correct route:
-// TODO: CHECK path name -- couldn't get to work!
-// app.use('/', pokemonRouter);
+// Connect router:
+app.use('/api/pokemon', pokemonRouter);
 
-////  ROUTES //////
-app.get('/api/pokemon', pokemonController.retrieve);
-app.post('/api/pokemon', pokemonController.createOne);
-app.delete('/api/pokemon', pokemonController.delete);
-app.get('/api/pokemon/:number', pokemonController.retrieveOne);
-app.put('/api/pokemon/:number', pokemonController.updateOne);
-app.delete('/api/pokemon/:number', pokemonController.deleteOne);
-
-// STATIC FILES ///// NEED TO FIX
-// app.use(express.static(path.join(__dirname, '/client')));
+// Serve static files:
 app.use(express.static(path.join(__dirname, '../client')));
-
-// app.get('/', function (req, res) {
-//   res.json({ message: 'Welcome to the Poke-MongoDB RESTful API!' });
-// });
 
 module.exports = app;

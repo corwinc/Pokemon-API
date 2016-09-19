@@ -2,36 +2,18 @@ var pokemonRouter = require('express').Router();
 var pokemonController = require('./pokemonController');
 var server = require('../../server.js');
 
-///// QUESTIONS //////
-// what is Router .route format?
-// what is :number format?
-
-
-// Create route handlers for each of the six methods in pokemonController
-// CAN'T GET TO WORK --  ROUTING IS ON SERVER.JS
 pokemonRouter.route('/')
   .get(pokemonController.retrieve)
-  .post(pokemonController.createOne);
+  .post(pokemonController.createOne)
+  .delete(pokemonController.delete);
 
-// pokemonRouter.route('/:number')
-pokemonRouter.route('/updatePokemon')
-  .post(pokemonController.updateOne);
+pokemonRouter.route('/:number')
+  .get(pokemonController.retrieveOne)
+  .put(pokemonController.retrieveOne)
+  .delete(pokemonController.deleteOne);
 
-pokemonRouter.route('/getPokemon')
-  .post(pokemonController.retrieveOne);
-
-pokemonRouter.route('/delete')
-  .get(pokemonController.delete) // delete all
-  .post(pokemonController.deleteOne);
+pokemonRouter.route('/type/:type')
+  .get(pokemonController.findByType);
 
 
 module.exports = pokemonRouter;
-
-
-
-
-
-
-// TODO
-// Create a router in `resources/pokemon/pokemonRouter.js` that utilizes 
-//each of your controller's methods. Be sure to handle errors appropriately.

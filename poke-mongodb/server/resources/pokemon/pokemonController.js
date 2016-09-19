@@ -93,13 +93,15 @@ exports.deleteOne = function (req, res) {
 };
 
 exports.findByType = function(req, res) {
-  var type = req.body.types[0];
+  console.log('findByType req:', req);
+  console.log('findByType req.query:', req.query);
+  var type = req.params.type;
   Pokemon.find({types: type})
   .exec(function(err, found) {
     if (err) {
       res.status(500).send(error);
     }
-    // display by type
+    res.json(found);
   });
 };
 

@@ -50,9 +50,8 @@ angular.module('pokemon.pokemon', [])
   $scope.getPokemonByType = function(type) {
     console.log('getPokemonByType called, type:', type);
     $http({
-      method: 'POST',
-      url: '/api/pokemon/type',
-      data: type
+      method: 'GET',
+      url: '/api/pokemon/type/' + type
     })
     .then(function(res) {
       console.log('getPokemonByType response data: ', res.data);
@@ -63,7 +62,6 @@ angular.module('pokemon.pokemon', [])
         console.log('for each poke: ', poke);
         $scope.pokemon.push(poke);
       });
-      res.send();
     });
   };
 

@@ -1,17 +1,7 @@
 <div ng-controller='PokemonController'>
   <h3>Pokemon</h3>
-  <div ng-repeat='pokemon in pokemon'>
-    <div>{{ pokemon.name }}</div>
-    <div>{{ pokemon.types }}</div>
-    <div>{{ pokemon.imgUrl }}</div>
-  </div>
-
-  <h3>Filter Pokemon by Type!</h3>
-  <!-- as user types, filter pokemon displayed. Eventually, combine filter function with the display of all Pokemon above -->
-  <!-- another way to do it is by select dropdown, w/ type options set w/ ng-repeat -->
-  <!--   <select ng-change=''></select> -->
   <input ng-model='typeQuery' />
-  <button ng-click='getPokemonByType(typeQuery)'>filter</button>
+  <button ng-click='getPokemonByType(typeQuery)'>filter by type</button>
   <!-- <div ng-repeat='poke in pokemon | filter:search'> -->
   <div ng-repeat='poke in pokemon'>
     <div>{{ poke.name }}</div>
@@ -20,7 +10,7 @@
   </div>
 
 <!-- Add a pokemon by filling in the input fields. each one should be added to the newPoke object on the $scope. on button submit, call controller method createPokemon -->
-  <h3>Add a Pokemon!</h3>
+  <h3>Add a Pokemon</h3>
   <h6>Name</h6>
   <input ng-model='newPoke.name'>
   <h6>Type</h6>
