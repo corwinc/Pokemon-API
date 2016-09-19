@@ -21,15 +21,12 @@ app.use(rateLimiter);
 // app.use('/', pokemonRouter);
 
 ////  ROUTES //////
-/// need to update to contain put, delete & test
-/// currently w/  get / post it works!!
 app.get('/api/pokemon', pokemonController.retrieve);
 app.post('/api/pokemon', pokemonController.createOne);
-app.post('/api/pokemon-retrieve', pokemonController.retrieveOne);
-app.post('/api/pokemon-update', pokemonController.updateOne);
-app.get('/api/delete', pokemonController.delete);
-app.post('/api/delete', pokemonController.deleteOne);
-// app.post('/api/pokemon/type', pokemonController.displayPokemonByType);
+app.delete('/api/pokemon', pokemonController.delete);
+app.get('/api/pokemon/:number', pokemonController.retrieveOne);
+app.put('/api/pokemon/:number', pokemonController.updateOne);
+app.delete('/api/pokemon/:number', pokemonController.deleteOne);
 
 // STATIC FILES ///// NEED TO FIX
 // app.use(express.static(path.join(__dirname, '/client')));

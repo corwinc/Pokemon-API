@@ -12,7 +12,7 @@ exports.createOne = function (req, res) {
       var newPoke = new Pokemon(poke);
       newPoke.save(function(err, poke) {
         if (err) {
-          return handleError(err);
+          res.status(500).send(error);
         }
         console.log('new pokemon created and saved!: ', newPoke);
         res.json(poke);
@@ -31,7 +31,7 @@ exports.retrieve = function (req, res) {
     .exec(function(err, found) {
       console.log('retrieve found: ', found);
       if (err) {
-        return handleError(err);
+        res.status(500).send(error);
       } 
     // if there, return pokemon data 
       res.json(found);
@@ -45,7 +45,7 @@ exports.retrieveOne = function (req, res) {
     .exec(function(err, found) {
       console.log('retrieveOne found: ', found);
       if (err) {
-        return handleError(err);
+        res.status(500).send(error);
       } 
     // if there, return pokemon data 
       res.json(found);
@@ -63,7 +63,7 @@ exports.updateOne = function (req, res) {
     .exec(function(err, pokemon) {
       console.log('updateOne pokemon data: ', pokemon);
       if (err) {
-        return handleError(err);
+        res.status(500).send(error);
       }
       res.json(pokemon);
     });
@@ -75,7 +75,7 @@ exports.delete = function (req, res) {
   Pokemon.find().remove({})
     .exec(function(err, data) {
       if (err) {
-        return handleError(err);
+        res.status(500).send(error);
       } 
       res.json(data);
     });
@@ -86,7 +86,7 @@ exports.deleteOne = function (req, res) {
   // console.log('deleteOne req.body: ', req.body);
   Pokemon.findOneAndRemove({number: req.body.number}, function(err, doc, result) {
     if (err) {
-      return handleError(err);
+      res.status(500).send(error);
     } 
     res.json(doc); 
   });
@@ -97,7 +97,7 @@ exports.findByType = function(req, res) {
   Pokemon.find({types: type})
   .exec(function(err, found) {
     if (err) {
-      return handleError(err);
+      res.status(500).send(error);
     }
     // display by type
   });

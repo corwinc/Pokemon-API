@@ -7,7 +7,7 @@ angular.module('pokemon.pokemon', [])
   // rateLimiter functionality: plan to add headers: {} to each request to /api/pokemon, with User info. Not including now b/c haven't been able to test the first versions of these functions b/c static files not loading.
 
   $scope.getPokemon = function() {
-    console.log('displayPokemon called');
+    console.log('getPokemon called');
     $http({
       method: 'GET',
       url: '/api/pokemon'
@@ -55,12 +55,11 @@ angular.module('pokemon.pokemon', [])
       data: type
     })
     .then(function(res) {
-      console.log('getPokemonByType response: ', res);
       console.log('getPokemonByType response data: ', res.data);
       // clear pokemon
       $scope.pokemon = [];
       // for each item in result, push to $scope.pokemon
-      res.forEach(function(poke) {
+      res.data.forEach(function(poke) {
         console.log('for each poke: ', poke);
         $scope.pokemon.push(poke);
       });
