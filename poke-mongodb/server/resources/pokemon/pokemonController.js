@@ -25,11 +25,10 @@ exports.createOne = function (req, res) {
 };
 
 exports.retrieve = function (req, res) {
-  // console.log('inside retrieve function');
-  // find ALL pokemon
+  console.log('get all pokemon request:', req);
   Pokemon.find()
     .exec(function(err, found) {
-      console.log('retrieve found: ', found);
+      // console.log('retrieve found: ', found);
       if (err) {
         res.status(500).send(error);
       } 

@@ -15,7 +15,7 @@ db.once('open', function() {
 
 /////// INSERT POKEMON DATA INTO DB ON LAUNCH //////
 pokeData.forEach(function(pokemon) {
-  console.log('individual pokeData item: ', pokemon); // success
+  // console.log('individual pokeData item: ', pokemon); // success
   // create new pokemon & save to server
   var item = new Pokemon(pokemon);
   item.save(function(err, success) {

@@ -10,7 +10,10 @@ angular.module('pokemon.pokemon', [])
     console.log('getPokemon called');
     $http({
       method: 'GET',
-      url: '/api/pokemon'
+      url: '/api/pokemon',
+      headers: {
+        'user': 'dummy'
+      }
     })
     .then(function(res) {
       console.log('displayPokemon response data: ', res.data);
@@ -31,6 +34,9 @@ angular.module('pokemon.pokemon', [])
     $http({
       method: 'POST',
       url: '/api/pokemon',
+      headers: {
+        'user': 'dummy'
+      },
       data: {
         number: $scope.newPoke.number,
         name: $scope.newPoke.name,
@@ -51,7 +57,10 @@ angular.module('pokemon.pokemon', [])
     console.log('getPokemonByType called, type:', type);
     $http({
       method: 'GET',
-      url: '/api/pokemon/type/' + type
+      url: '/api/pokemon/type/' + type,
+      headers: {
+        'user': 'dummy'
+      }
     })
     .then(function(res) {
       console.log('getPokemonByType response data: ', res.data);
