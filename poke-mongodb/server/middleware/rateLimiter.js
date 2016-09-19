@@ -6,16 +6,19 @@ var rateLimiter = function (req, res, next) {
   if (req.url === '/api/pokemon' && user !== undefined) {
     // console.log('user found!');
     if (!storage.user) {
-      storage.user = 1;
+      console.log('there\'s no storage.user!');
+      storage[user] = 1;
+      console.log('storage:', storage);
     }
 
-    if (storage.user < 100) {
-      console.log('storage.user < 100');
-      storage.user++;        
-      next();
+    if (storage[user] < 100) {
+      console.log('storage[user] < 100');
+      storage[user]++;
+      console.log('storage++:', storage);       
     } else {
       res.status(500).send('You\'re over the limit. Please wait an hour before sending another request.');
     }
+    
   } else if (req.url === '/api/pokemon' && req.headers.user === undefined) {
     res.status(500).send('No user is specified.');
   }
