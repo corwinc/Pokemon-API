@@ -38,7 +38,7 @@ exports.retrieve = function (req, res) {
 };
 
 exports.retrieveOne = function (req, res) {
-  var number = req.params.number
+  var number = req.params.number;
   Pokemon.find({number: number})
     .exec(function(err, found) {
       console.log('retrieveOne found: ', found);
