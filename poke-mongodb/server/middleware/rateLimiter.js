@@ -14,15 +14,13 @@ var rateLimiter = function (req, res, next) {
       storage[user].requests = 1;
 
       var date = new Date();
-      console.log('date', date);
       storage[user].startTime = date;
-      console.log('new user rateLimiter:', storage[user]);
     }
 
     // CHECK REQUEST COUNT & TIME
     var currentTime = Date.now();
     var elapsedTimeS = (currentTime - storage[user].startTime) / 1000; // seconds
-    // console.log('elapsed time seconds:', elapsedTimeS);
+    
     if (elapsedTimeS < 3600) {
       if (storage[user].requests < 100) {
         storage[user].requests++;
