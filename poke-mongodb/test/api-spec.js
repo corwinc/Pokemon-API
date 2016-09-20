@@ -62,13 +62,12 @@ describe('Pokemon API', function () {
     server.close();
   });
 
-var assert = require('assert');
   describe('/api/pokemon', function () {
     describe('pokemonController.retrieve should be a function', function() {
       it('should return starterPokemon', function() {
         expect(pokemonController.retrieve).to.be.a('function');
         // assert.equal(1, 1);
-      })
+      });
     });
 
     describe('Should get stuff', function() {
@@ -77,8 +76,8 @@ var assert = require('assert');
           .get('/api/pokemon/4')
           .set('user', 'dummy')
           .expect(200, done);
-      })
-    })
+      });
+    });
   });
 });
 

@@ -38,7 +38,8 @@ exports.retrieve = function (req, res) {
 };
 
 exports.retrieveOne = function (req, res) {
-  Pokemon.find({number: req.body.number})
+  var number = req.params.number
+  Pokemon.find({number: number})
     .exec(function(err, found) {
       console.log('retrieveOne found: ', found);
       if (err) {
@@ -50,9 +51,8 @@ exports.retrieveOne = function (req, res) {
 };
 
 exports.updateOne = function (req, res) {
-  //PUT request handling: what is being updated? assume everything
-  // console.log('updateOne req.body: ', req.body);
-  Pokemon.findOneAndUpdate({number: req.body.number}, {
+  var number = req.params.number;
+  Pokemon.findOneAndUpdate({number: number}, {
     name: req.body.name,
     types: req.body.types,
     imgUrl: req.body.imgUrl
@@ -79,9 +79,8 @@ exports.delete = function (req, res) {
 };
 
 exports.deleteOne = function (req, res) {
-  // DELETE only one by NUMBER
-  // console.log('deleteOne req.body: ', req.body);
-  Pokemon.findOneAndRemove({number: req.body.number}, function(err, doc, result) {
+  var number = req.params.number;
+  Pokemon.findOneAndRemove({number: number}, function(err, doc, result) {
     if (err) {
       res.status(500).send(error);
     } 
@@ -90,8 +89,6 @@ exports.deleteOne = function (req, res) {
 };
 
 exports.findByType = function(req, res) {
-  console.log('findByType req:', req);
-  console.log('findByType req.query:', req.query);
   var type = req.params.type;
   Pokemon.find({types: type})
   .exec(function(err, found) {

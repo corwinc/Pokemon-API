@@ -9,7 +9,7 @@ pokemonRouter.route('/')
 
 pokemonRouter.route('/:number')
   .get(pokemonController.retrieveOne)
-  .put(pokemonController.retrieveOne)
+  .put(pokemonController.updateOne)
   .delete(pokemonController.deleteOne);
 
 pokemonRouter.route('/type/:type')
