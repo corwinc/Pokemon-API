@@ -4,6 +4,7 @@ var expect = chai.expect;
 var request = require('supertest');
 var app = require('../server/server.js');
 var Pokemon = require('../server/resources/pokemon/Pokemon');
+var pokemonController = require('../server/resources/pokemon/pokemonController.js');
 
 chai.use(require('chai-things'));
 
@@ -50,7 +51,7 @@ describe('Pokemon API', function () {
   });
 
   beforeEach(function (done) {
-    server = app.listen(3000, function() {
+    server = app.listen(8080, function() {
       clearDB(function () {
         Pokemon.create(starterPokemon, done);
       });
@@ -61,7 +62,26 @@ describe('Pokemon API', function () {
     server.close();
   });
 
+var assert = require('assert');
   describe('/api/pokemon', function () {
-    // Write your tests here!
+    describe('pokemonController.retrieve should be a function', function() {
+      it('should return starterPokemon', function() {
+        expect(pokemonController.retrieve).to.be.a('function');
+        // assert.equal(1, 1);
+      })
+    });
+
+    describe('Should get stuff', function() {
+      it('should get stuff', function(done) {
+        request(app)
+          .get('/api/pokemon/4')
+          .set('user', 'dummy')
+          .expect(200, done);
+      })
+    })
   });
 });
+
+
+
+

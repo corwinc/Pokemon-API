@@ -37,8 +37,6 @@ exports.retrieve = function (req, res) {
     });
 };
 
-
-///// NEED TO FIX ///////
 exports.retrieveOne = function (req, res) {
   Pokemon.find({number: req.body.number})
     .exec(function(err, found) {
