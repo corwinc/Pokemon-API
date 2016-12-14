@@ -2,14 +2,12 @@
   <h3>Pokemon</h3>
   <input ng-model='typeQuery' />
   <button ng-click='getPokemonByType(typeQuery)'>filter by type</button>
-  <!-- <div ng-repeat='poke in pokemon | filter:search'> -->
   <div ng-repeat='poke in pokemon'>
     <div>{{ poke.name }}</div>
     <div>{{ poke.types }}</div>
     <div>{{ poke.imgUrl }}</div>
   </div>
 
-<!-- Add a pokemon by filling in the input fields. each one should be added to the newPoke object on the $scope. on button submit, call controller method createPokemon -->
   <h3>Add a Pokemon</h3>
   <h6>Name</h6>
   <input ng-model='newPoke.name'>
@@ -22,8 +20,3 @@
   <div>{{newPoke.name}}</div>
   <button ng-click='createPokemon(newPoke)'>Add</button>
 </div>
-
-
-
-
-<!-- ng-repeat='name in poke.types' -->
