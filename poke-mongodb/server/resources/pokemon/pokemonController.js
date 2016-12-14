@@ -10,7 +10,6 @@ exports.createOne = function (req, res) {
         if (err) {
           res.status(500).send(error);
         }
-        console.log('new pokemon created and saved!: ', newPoke);
         res.json(poke);
       });
     } else {
@@ -32,7 +31,6 @@ exports.retrieveOne = function (req, res) {
   var number = req.params.number;
   Pokemon.find({number: number})
     .exec(function(err, found) {
-      console.log('retrieveOne found: ', found);
       if (err) {
         res.status(500).send(error);
       } 
@@ -48,7 +46,6 @@ exports.updateOne = function (req, res) {
     imgUrl: req.body.imgUrl
   })
     .exec(function(err, pokemon) {
-      console.log('updateOne pokemon data: ', pokemon);
       if (err) {
         res.status(500).send(error);
       }

@@ -1,7 +1,6 @@
 angular.module('pokemon.pokemon', [])
 .controller('PokemonController', function($scope, $http) {
   $scope.pokemon = [];
-  console.log('scope pokemon:', $scope.pokemon);
 
   $scope.getPokemon = function() {
     console.log('getPokemon called');
@@ -13,8 +12,6 @@ angular.module('pokemon.pokemon', [])
       }
     })
     .then(function(res) {
-      console.log('displayPokemon response data: ', res.data);
-
       res.data.forEach(function(poke) {
         if ($scope.pokemon.indexOf(poke) === -1) {
           $scope.pokemon.push(poke);
@@ -25,7 +22,6 @@ angular.module('pokemon.pokemon', [])
   };
 
   $scope.createPokemon = function() {
-    console.log('createPokemon called');
     $http({
       method: 'POST',
       url: '/api/pokemon',
@@ -40,7 +36,6 @@ angular.module('pokemon.pokemon', [])
       }
     })
     .then(function(res) {
-      console.log('createPokemon res:', res);
       $scope.getPokemon();
       res.send('pokemon created!');
     });
@@ -48,7 +43,6 @@ angular.module('pokemon.pokemon', [])
 
 
   $scope.getPokemonByType = function(type) {
-    console.log('getPokemonByType called, type:', type);
     $http({
       method: 'GET',
       url: '/api/pokemon/type/' + type,
@@ -57,10 +51,8 @@ angular.module('pokemon.pokemon', [])
       }
     })
     .then(function(res) {
-      console.log('getPokemonByType response data: ', res.data);
       $scope.pokemon = [];
       res.data.forEach(function(poke) {
-        console.log('for each poke: ', poke);
         $scope.pokemon.push(poke);
       });
     });
