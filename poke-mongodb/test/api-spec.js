@@ -15,7 +15,6 @@ var getBody = function (res) {
 };
 
 var clearDB = function (done) {
-  // Mongoose doesn't know how to pluralize 'pokemon'
   mongoose.connection.collections['pokemons'].remove(done);
 };
 
@@ -66,7 +65,6 @@ describe('Pokemon API', function () {
     describe('pokemonController.retrieve should be a function', function() {
       it('should return starterPokemon', function() {
         expect(pokemonController.retrieve).to.be.a('function');
-        // assert.equal(1, 1);
       });
     });
 
